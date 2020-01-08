@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils import timezone
+from django.conf import settings
 
 #   UserManager imports
 from django.contrib.auth.base_user import BaseUserManager
@@ -75,3 +76,10 @@ class User(AbstractBaseUser):
     
     def has_module_perms(self, app_label):
         return self.is_admin
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
