@@ -48,10 +48,13 @@ class UserManager(BaseUserManager):
         return user    
 
 class User(AbstractBaseUser):
+    
+    #   compulsory fields
     email       = models.EmailField(max_length=255,unique=True)
     username    = models.CharField(unique=True,  max_length=255,  null=True, blank=False)
     first_name  = models.CharField(unique=False, max_length=255,  null=True, blank=False, verbose_name='First Name')
     last_name   = models.CharField(unique=False, max_length=255,  null=True, blank=False, verbose_name='Last Name')
+    
     date_joined = models.DateTimeField(default=timezone.now)
 
     is_staff    = models.BooleanField(default=False)
