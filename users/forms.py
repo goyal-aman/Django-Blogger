@@ -1,17 +1,34 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import User
+from .models import User, Profile
 from django import forms
 
+#for admin page
 class UserCreationForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
-    email = forms.CharField(max_length=30)
-
     class Meta:
         model = User
         fields = ('first_name','last_name','username','email','password1','password2')
 
-class UserCreationChangeForm(UserChangeForm):
+#for admin page
+class UserChangeForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('first_name','last_name','username','email',)
+
+class UserUpdateForm(forms.ModelForm):
+    '''
+    model form are the form that work with specific user model
+    '''
+    class Meta:
+        model = User
+        fields = ('first_name','last_name','username','email',)
+
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    '''
+    model form are the form that work with specific user model
+    '''
+    class Meta:
+        model = Profile
+        fields = ['image']
+
