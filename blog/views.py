@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Post
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils import timezone
 
 # Create your views here.
@@ -22,7 +22,7 @@ class PostCreateView(LoginRequiredMixin ,CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
     
-class PostUpdateView(LoginRequiredMixin , UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title', 'content'] # <app>/<model>_form.html
 
@@ -31,3 +31,17 @@ class PostUpdateView(LoginRequiredMixin , UpdateView):
         form.instance.date_updated = timezone.now()
         form.instance.is_postupdated = True
         return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+
+class PostDeleteView( LoginRequiredMixin, UserPassesTestMixin , DeleteView):
+    model = Post
+    success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
