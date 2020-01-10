@@ -10,6 +10,7 @@ class PostListView(ListView):
     template_name = 'blog/home.html' #<app>/<model>_<viewtype>/.html
     context_object_name = 'posts'
     ordering = ['-date_update']
+    paginate_by = 2 
 
 class PostDetailView(DetailView):
     model = Post
