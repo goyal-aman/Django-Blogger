@@ -1,37 +1,22 @@
 {% extends 'blog/base.html' %}
-{% block content %}
+  {% block content %}
 {% for post in posts %}
-<article class="media content-section">
-  <img src="{{ post.author.profile.image.url }}" class="rounded-circle article-img">
-  <div class="media-body">
-    <div class="article-metadata">
-      <a class="mr-2" href="{% url 'blog-post-user' post.author %}">{{ post.author }}</a>
-
-      {% if post.is_postupdated %}
-      <small cFlass="text-muted">updated: {{ post.date_posted }}</small>
-      {% else %}
-      <small class="text-muted">{{ post.date_posted }}</small>
-      {% endif %}
-    </div>
-    <h2><a class="article-title" href="{% url 'blog-post-detail' post.id %}">{{ post.title }}</a></h2>
-    <p class="article-content">{{ post.content }}</p>
-  </div>
-</article>
+{% include 'snippets/post_snippet.html' %}
 {% endfor %}
 <div class="text-center">
-{% if is_paginated %}
-  
+  {% if is_paginated %}
+
   {% if page_obj.has_previous %}
   <a class="btn btn-outline-info" href="?page=1">First</a>
   <a class="btn btn-outline-info" href="?page={{ page_obj.previous_page_number }}">Prev</a>
   {% endif  %}
 
   {% for num in page_obj.paginator.page_range %}
-    {% if page_obj.number == num %}
-    <a class="btn btn-info"href='#' >{{ num }}</a>
-    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-    <a class="btn btn-outline-info" href="?page={{ num }}">{{ num }}</a>
-    {% endif %}
+  {% if page_obj.number == num %}
+  <a class="btn btn-info" href='#'>{{ num }}</a>
+  {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+  <a class="btn btn-outline-info" href="?page={{ num }}">{{ num }}</a>
+  {% endif %}
   {% endfor %}
 
   {% if page_obj.has_next %}
