@@ -37,15 +37,28 @@
                         <div class="col-4 text-center">
                             <h3 class="mb-0">245</h3>
                             <small>Following</small>
-                            <button class="btn btn-outline-info btn-block"><span class="fa fa-user"></span>
-                                Profile</button>
+                            <button class="btn btn-outline-info btn-block">Followers</button>
                         </div>
+                        <!--dropdown button-->
                         <div class="col-4 text-center">
-                            <h3 class="mb-0">43</h3>
-                            <small>Snippets</small>
-                            <button type="button" class="btn btn-outline-primary btn-block"><span
-                                    class="fa fa-gear"></span> Options</button>
+                            <!-- <h3 class="mb-0">45  </h3> -->
+                            <br>
+                            <small>Manage Profile</small>
+                            <button type="button" class="btn btn-outline-primary btn-block dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-gear"></span> Options</button>
+                            <div class="dropdown-menu">
+                                {% if user == view.get_user %}
+                                <a class="dropdown-item" href="{% url 'users-profile-edit' %}">Edit Profile</a>
+                                {% else %}
+                                <a class="dropdown-item disabled" href="#">Block</a>
+                                {% endif %}
+                                <!-- <a class="dropdown-item" href="#">Another action</a> -->
+                                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                                <!-- <div class="dropdown-divider"></div> -->
+                            </div>
                         </div>
+                        <!--dropdown button ends-->
                         <!--/col-->
                     </div>
                     <!--/row-->
@@ -55,11 +68,11 @@
         </div>
     </div>
     <br>
-<!-- users post begin -->
+    <!-- users post begin -->
     {% for post in object %}
     {% include 'Snippets/post_snippet.html' %}
     {% endfor %}
-<!--user post ends -->
+    <!--user post ends -->
 </div>
 <!--profile ends-->
 {% include 'snippets/pagination_snippet.html' %}
