@@ -1,29 +1,16 @@
 {% extends 'blog/base.html' %}
-  {% block content %}
+
+{% block content %}
+
+<!-- home post -->
 {% for post in posts %}
 {% include 'snippets/post_snippet.html' %}
 {% endfor %}
-<div class="text-center">
-  {% if is_paginated %}
+<!--end home post-->
 
-  {% if page_obj.has_previous %}
-  <a class="btn btn-outline-info" href="?page=1">First</a>
-  <a class="btn btn-outline-info" href="?page={{ page_obj.previous_page_number }}">Prev</a>
-  {% endif  %}
+<!--pagination -->
+<br>
+{% include 'snippets/pagination_snippet.html' %}
+<!--endpagination-->
 
-  {% for num in page_obj.paginator.page_range %}
-  {% if page_obj.number == num %}
-  <a class="btn btn-info" href='#'>{{ num }}</a>
-  {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-  <a class="btn btn-outline-info" href="?page={{ num }}">{{ num }}</a>
-  {% endif %}
-  {% endfor %}
-
-  {% if page_obj.has_next %}
-  <a class="btn btn-outline-info" href="?page={{ page_obj.next_page_number }}">Next</a>
-  <a class="btn btn-outline-info" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-  {% endif  %}
-
-  {% endif %}
-</div>
 {% endblock %}

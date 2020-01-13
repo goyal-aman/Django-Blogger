@@ -1,4 +1,26 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-{% include 'snippets/post_snippet.html' with post=object %}
+<article class="media content-section mb-1 border-top">
+    <img src="{{ post.author.profile.image.url }}" class="rounded-circle article-img">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="{% url 'blog-post-user' post.author %}">{{ post.author }}</a>
+
+            {% if post.is_postupdated %}
+            <small class="text-muted">updated: {{ post.date_posted }}</small>
+            {% else %}
+            <small class="text-muted">{{ post.date_posted }}</small>
+            {% endif %}
+        </div>
+        <h4><a class="article-title" href="{% url 'blog-post-detail' post.id %}">{{ post.title|title }}</a></h4>
+        <p class="article-content border-bottom pb-2">{{ post.content|title }}</p>
+
+        <div class="text-right">
+            <a class="btn btn-danger btn-sm text-right" href="{% url 'blog-post-delete' post.id %}">Delete</a>
+            <a class="btn btn-primary btn-sm text-right" href="{% url 'blog-post-update' post.id %}">Update</a>
+        </div>
+
+    </div>
+</article>
+
 {% endblock %}

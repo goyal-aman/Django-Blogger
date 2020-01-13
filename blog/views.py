@@ -4,23 +4,35 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils import timezone
 from django.contrib.auth import get_user_model
+from blog.models import Post
 
 # Create your views here.
+
+class UserProfileListView(ListView):
+    '''
+    modified get_queryset, return only required user object
+    kwarg: username
+    '''
+    model = Post
+    template_name = 'blog/profile_list.html'
+    context_object_name = 'object'
+    paginate_by = 10
+    
+    def get_user(self, **kwargs):
+        '''return user object with username = self.kwargs.get('username')'''
+        return get_user_model().objects.get(username=self.kwargs.get('username'))
+    
+    def get_queryset(self):
+        self.profile_user = get_object_or_404(get_user_model(), username=self.kwargs.get('username'))
+        return Post.objects.filter(author=self.profile_user)
+
+
 class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html' #<app>/<model>_<viewtype>/.html
     context_object_name = 'posts'
     ordering = ['-date_update']
     paginate_by = 10 
-
-class UserPostListView(ListView):
-    model = Post
-    template_name = 'blog/user_posts.html' #<app>/<model>_<viewtype>/.html
-    context_object_name = 'posts'
-    paginate_by = 10 
-    def get_queryset(self):
-        user = get_object_or_404(get_user_model(), username=self.kwargs.get('username'))
-        return Post.objects.filter(author=user).order_by('-date_posted')
 
 
 class PostDetailView(DetailView):
