@@ -36,7 +36,7 @@
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
           {% if user.is_authenticated %}  
-          <a class="nav-item nav-link" href="{% url 'blog-post-user' user.username %}"><b>{{ user.first_name|title }}</b></a>
+          <a class="nav-item nav-link" href="{% url 'user-profile' user.username %}"><b>{{ user.first_name|title }}</b></a>
           <a class="nav-item nav-link" href="{% url 'blog-post-create' %}">New Post</a>
           <a class="nav-item nav-link" href="{% url 'users-logout' %}"> Logout </a>
             

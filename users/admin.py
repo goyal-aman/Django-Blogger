@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import UserCreationForm, UserChangeForm
-from .models import User, Profile
+from .models import User, Profile, Follow
 # Register your models here.
 class UserAdmin(UserAdmin):
     add_form = UserCreationForm
@@ -28,3 +28,4 @@ class UserAdmin(UserAdmin):
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Profile)
+admin.site.register(Follow)

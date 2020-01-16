@@ -1,0 +1,5 @@
+<form class="form" method="POST" action="{% url 'users-profile-follow' %}">
+    {% csrf_token %}
+    <input type="hidden" name="username" value="{% if username %}{{ username }} {% endif %}">
+    <button type="submit" >Follow</button>
+</form>
