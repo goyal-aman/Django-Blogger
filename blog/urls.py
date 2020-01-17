@@ -9,4 +9,7 @@ urlpatterns = [
     path('post/new/', views.PostCreateView.as_view(), name='blog-post-create' ),
     path('post/update/<int:pk>', views.PostUpdateView.as_view(), name='blog-post-update'),
     path('post/delete/<int:pk>', views.PostDeleteView.as_view(), name='blog-post-delete'),
+    path('profile/<str:username>/followers', views.show_followers, name='user-follower'),
+    path('profile/<str:username>/following', views.show_following, name='user-following'),
+
 ]

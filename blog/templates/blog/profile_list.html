@@ -3,6 +3,7 @@
 {% block content %}
 <!--profile begin-->
 <div class="container">
+    <!--profile head-->
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -13,7 +14,7 @@
                                 class="mx-auto rounded-circle account-img img-bordered-primary">
                             <br>
                         </div>
-
+    
                         <div class="col-12 col-lg-8 col-md-6">
                             <h3 class="mb-0 text-truncated text-center">{{user_object.first_name|capfirst}}
                                 {{user_object.last_name|capfirst}}
@@ -28,27 +29,35 @@
                             </div>
                             <br>
                         </div>
-
+    
                         <!--FOLLOWING FOLLOWERS NUMBER-->
                         <div class="col-sm-4 col-4 text-center">
                             <h6 class="mb-0">
                                 <br>
                                 {{ user_object.profile.isfollowing.all.count }}
-                                 <small>Following</small>
+                                 <small>
+                                    <a href="{% url 'user-following' user_object.username %}" style="color: black;">
+                                        Following
+                                    </a>
+                                 </small>
                                 <br>
                                 <br>
                                 {{ user_object.profile.followedby.all.count }}
-                                <small> Followers</small>
+                                <small> 
+                                <a href="{% url 'user-follower' user_object.username %}" style="color: black;">
+                                    Followers
+                                </a>
+                                </small>
                             </h6>
-
+    
                         </div>
                         <!--FOLLOWING FOLLOWERS NUMBER END-->
-
+    
                         {% if user.is_authenticated %}
                         <!--FOLLOW/UNFOLLOW BUTTON-->
                         <div class="col-4 text-center">
                             <br>
-
+    
                             {% if view.is_following %}
                             <a class="btn btn-outline-info btn-block"
                                 href="{% url 'users-profile-unfollow' user_object.id %}">unfollow</a>
@@ -60,7 +69,7 @@
                             {% endif %}
                         </div>
                         <!--FOLLOW/UNFOLLOW BUTTON END-->
-
+    
                         <!--dropdown button-->
                         <div class="col-4 text-center">
                             <!-- <h3 class="mb-0">45  </h3> -->
@@ -89,6 +98,8 @@
             </div>
         </div>
     </div>
+        <!--profile head-->
+
     <br>
     <!-- users post begin -->
     {% for post in object %}

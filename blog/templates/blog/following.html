@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block content  %}
+
+<div style="display:flex; flex-wrap: wrap;">
+{% for following in followings %}
+{% include 'snippets/user_card.html' with object=following %}
+{% endfor %}
+</div>
+<!-- include 'snippets/profile_head.html' with user_object=follower.user  -->
+
+{% endblock content  %}

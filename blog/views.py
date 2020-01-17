@@ -45,8 +45,9 @@ class PostListView(LoginRequiredMixin  ,ListView):
     paginate_by = 10 
 
     def get_queryset(self):
-        qs = Post.objects.filter(author__profile__followers=self.request.user.profile).order_by('-date_update')
-        return qs
+        user_post = Post.objects.filter(author=self.request.user)
+        qs = Post.objects.filter(author__profile__followers=self.request.user.profile)  #.order_by('-date_update')
+        return qs.union(user_post).order_by('-date_update')
 
 
 class PostDetailView(DetailView):
@@ -83,3 +84,19 @@ class PostDeleteView( LoginRequiredMixin, UserPassesTestMixin , DeleteView):
         post = self.get_object()
         if self.request.user == post.author:
             return True
+    
+def show_followers(request, **kwargs):
+    context = {
+
+        'followers' : request.user.profile.followedby.all()
+    }
+    return render(request, 'blog/followers.html', context)
+
+
+def show_following(request, **kwargs):
+    context = {
+
+        'followings' : request.user.profile.isfollowing.all()
+    }
+    return render(request, 'blog/following.html', context)
+
