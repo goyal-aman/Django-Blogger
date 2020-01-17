@@ -82,3 +82,20 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+.img-bordered-primary {
+  /* -webkit-box-shadow: 0 0 0 2px #fff, 0 0 0 4px #446CB3; */
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #446CB3;
+}
+
+.profile-info-left img.avatar {
+  border: 2px solid #fff;
+}
+.profile-info-left .section {
+  margin-top: 50px;
+}
+.profile-info-left .section h3 {
+  font-size: 1.1em;
+  font-weight: 700;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
