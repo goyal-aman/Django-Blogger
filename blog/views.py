@@ -4,8 +4,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils import timezone
 from django.contrib.auth import get_user_model
-from blog.models import Post
-
+from users.models import Profile
 # Create your views here.
 
 class UserProfileListView(ListView):
@@ -18,13 +17,24 @@ class UserProfileListView(ListView):
     context_object_name = 'object'
     paginate_by = 10
     
-    def get_user(self, **kwargs):
-        '''return user object with username = self.kwargs.get('username')'''
-        return get_user_model().objects.get(username=self.kwargs.get('username'))
+
+    # def get_user(self, **kwargs):
+        # '''return user object with username = self.kwargs.get('username')'''
+        # return get_user_model().objects.get(username=self.kwargs.get('username'))
+
+    def is_following(self, **kwargs):
+        return self.request.user.profile.isfollowing.filter(user__username=self.kwargs.get('username')).count() == 1
     
     def get_queryset(self):
         self.profile_user = get_object_or_404(get_user_model(), username=self.kwargs.get('username'))
         return Post.objects.filter(author=self.profile_user)
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super(UserProfileListView, self).get_context_data(**kwargs)
+        context['user_object'] = get_user_model().objects.get(username=self.kwargs.get('username'))
+        # context['if_following'] = self.request.user.profile.isfollowing.filter(user__username=self.kwargs.get('username')).count() == 1
+        print('this is context', context)
+        return context
 
 
 class PostListView(ListView):

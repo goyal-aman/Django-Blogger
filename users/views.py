@@ -7,26 +7,6 @@ from .models import Profile
 
 User = get_user_model()
 
-# Create your views here.
-# class UserProfileListView(ListView):
-#     '''
-#     modified get_queryset, return only posts queryset filtered by username
-#     kwarg: username
-#     '''
-#     model = Post
-#     template_name = 'blog/profile_post_list.html'
-#     context_object_name = 'object'
-#     paginate_by = 10
-    
-#     def get_user(self, **kwargs):
-#         '''return user object with username = self.kwargs.get('username')'''
-#         return get_user_model().objects.get(username=self.kwargs.get('username'))
-    
-#     def get_queryset(self):
-#         self.profile_user = get_object_or_404(get_user_model(), username=self.kwargs.get('username'))
-#         return Post.objects.filter(author=self.profile_user)
-
-
 def user_profile_page(request, username):
     return render(request, 'users/profile_post_list.html')
 
