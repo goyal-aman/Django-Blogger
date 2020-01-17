@@ -44,6 +44,7 @@
                         </div>
                         <!--FOLLOWING FOLLOWERS NUMBER END-->
 
+                        {% if user.is_authenticated %}
                         <!--FOLLOW/UNFOLLOW BUTTON-->
                         <div class="col-4 text-center">
                             <br>
@@ -61,7 +62,6 @@
                         <!--FOLLOW/UNFOLLOW BUTTON END-->
 
                         <!--dropdown button-->
-                        {% if user.is_authenticated %}
                         <div class="col-4 text-center">
                             <!-- <h3 class="mb-0">45  </h3> -->
                             <br>

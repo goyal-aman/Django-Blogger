@@ -37,12 +37,16 @@ class UserProfileListView(ListView):
         return context
 
 
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin  ,ListView):
     model = Post
     template_name = 'blog/home.html' #<app>/<model>_<viewtype>/.html
     context_object_name = 'posts'
     ordering = ['-date_update']
     paginate_by = 10 
+
+    def get_queryset(self):
+        qs = Post.objects.filter(author__profile__followers=self.request.user.profile).order_by('-date_update')
+        return qs
 
 
 class PostDetailView(DetailView):
