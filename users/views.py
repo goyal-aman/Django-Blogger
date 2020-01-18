@@ -59,7 +59,6 @@ def unfollow_user(request, id):
     if request.user.is_authenticated:
         to_user = get_object_or_404(User, id=id)
         from_user = get_object_or_404(User, id=request.user.id)
-        print(f"this is to user {to_user}, this is from_user {from_user}")
         from_user.profile.isfollowing.remove(to_user.profile)
         to_user.profile.followedby.remove(from_user.profile)
 
