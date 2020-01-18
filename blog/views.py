@@ -18,6 +18,7 @@ class UserProfileListView(ListView):
     model = Post
     template_name = 'blog/post_user.html'
     context_object_name = 'object'
+    ordering = ['-date_update']
     paginate_by = 10
 
     def is_following(self, **kwargs):
@@ -26,7 +27,7 @@ class UserProfileListView(ListView):
     def get_queryset(self):
         self.profile_user = get_object_or_404(
             get_user_model(), username=self.kwargs.get('username'))
-        return Post.objects.filter(author=self.profile_user)
+        return Post.objects.filter(author=self.profile_user).order_by('-date_update')
 
     def get_context_data(self, *args, **kwargs):
         context = super(UserProfileListView, self).get_context_data(**kwargs)
@@ -119,10 +120,14 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def show_followers(request, **kwargs):
+    '''
+    url conf name : 'user-follower'
+    url parameter: 'username'
+    '''
     user = get_user_model().objects.get(username=kwargs.get('username'))
     context = {
 
-        'followers': user.profile.followedby.all()
+        'followers': user.profile.followedby.all().order_by('user__username')
     }
     return render(request, 'blog/followers.html', context)
 
