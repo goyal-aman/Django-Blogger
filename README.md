@@ -8,7 +8,7 @@ authentication. Users can follow/unfollow multiple users on platform.
 start playing around by getting your copy of source code by running this command in your terminal
 
 ```
-git clone https://github.com/goyal-aman/Django-TodoApp.git
+git clone https://github.com/goyal-aman/Django-Blogger.git
 ```
 
 ### Prerequisites
