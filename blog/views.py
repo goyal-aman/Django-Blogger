@@ -5,6 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from users.models import Profile
+from django.db.models import Q
+from django.contrib import messages
 # Create your views here.
 
 
@@ -109,7 +111,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     template used : 'post_confirm_delete.html'
     '''
-    
+
     model = Post
     success_url = '/'
 
@@ -139,3 +141,28 @@ def show_following(request, **kwargs):
         'followings': user.profile.isfollowing.all()
     }
     return render(request, 'blog/following.html', context)
+
+
+def search_user(request):
+    # return render(request, 'blog/search_user.html')
+    template_name = 'blog/search_user.html'
+    if request.method == 'POST':
+        search_key = request.POST["search"]
+        print('\n\n this is search key', search_key=='', '\n\n')
+        if search_key and search_key!="":
+            query = Profile.objects.filter(
+                Q(user__username__icontains=search_key) |
+                Q(user__first_name__icontains=search_key) |
+                Q(user__last_name__icontains=search_key)
+            )
+        
+            if query:
+                context = {
+                    'search_object' : query
+                }
+                return render(request, template_name, context )
+            else:
+                messages.warning(request, 'No User Found')
+        else:
+                messages.warning(request, 'Invalid Search')
+    return render(request, template_name)

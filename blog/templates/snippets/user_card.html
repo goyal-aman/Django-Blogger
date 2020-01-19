@@ -1,15 +1,17 @@
-<div class="panel-body text-center card col-3 mb-1 mt-1 ml-1 mr-1"">
+<div class="panel-body text-center card col-3 mb-1 mt-1 ml-1 mr-1"
+    style="border-radius:7px; border-style:groove; border-color:black;">
     <div class="userprofile">
-        <div class="userpic"> <img src="{{object.user.profile.image.url}}" alt=""
-                class="userpicimg">
-        </div>
+        <a href="{% url 'blog-post-user' object.user.username %}" class="userpic "> <img
+                src="{{object.user.profile.image.url}}" alt="" class="userpicimg img-bordered-primary">
+        </a>
 
-        <h3>
-            <a href="{% url 'blog-post-user' object.user.username %}" class="username">{{object.user.username}}</a>
+        <h3 class="mt-4">
+            <a href="{% url 'blog-post-user' object.user.username %}" class="username">@{{object.user.username}}</a>
         </h3>
-        <p>{{object.user.first_name|capfirst}} {{object.user.last_name|capfirst}}</p>
-        <!-- <a href="mailto:info@maxartkiller.in">info@maxartkiller.in</a> | +91 000 000 0000 </p> -->
-        <div class="socials tex-center"> <a href="" class="btn btn-circle btn-primary ">B<br></a>
-        </div>
+        <small>
+            <p>{{object.user.first_name|capfirst}} {{object.user.last_name|capfirst}}</p>
+
+        </small>
+
     </div>
 </div>
