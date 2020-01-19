@@ -14,7 +14,7 @@
                                 class="mx-auto rounded-circle account-img img-bordered-primary">
                             <br>
                         </div>
-    
+
                         <div class="col-12 col-lg-8 col-md-6">
                             <h3 class="mb-0 text-truncated text-center">{{user_object.first_name|capfirst}}
                                 {{user_object.last_name|capfirst}}
@@ -29,36 +29,36 @@
                             </div>
                             <br>
                         </div>
-    
+
                         <!--FOLLOWING FOLLOWERS NUMBER-->
                         <div class="col-sm-4 col-4 text-center">
                             <h6 class="mb-0">
                                 <br>
-                                {{ user_object.profile.isfollowing.all.count }}
-                                 <small>
-                                    <a href="{% url 'user-following' user_object.username %}" style="color: black;">
+                                <a class="btn btn-primary btn-sm" href="{% url 'user-following' user_object.username %}" style="color: white;">
+                                    {{ user_object.profile.isfollowing.all.count }}
+                                    <small>
                                         Following
-                                    </a>
-                                 </small>
-                                <br>
-                                <br>
-                                {{ user_object.profile.followedby.all.count }}
-                                <small> 
-                                <a href="{% url 'user-follower' user_object.username %}" style="color: black;">
-                                    Followers
                                 </a>
                                 </small>
+                                
+                                <a  class="btn btn-warning btn-sm" href="{% url 'user-follower' user_object.username %}" style="color: white;">
+                                {{ user_object.profile.followedby.all.count }}
+                                <small>
+                                        Followers
+                                    </a>
+                                </small>
                             </h6>
-    
+
                         </div>
                         <!--FOLLOWING FOLLOWERS NUMBER END-->
-    
+
                         {% if user.is_authenticated %}
                         <!--FOLLOW/UNFOLLOW BUTTON-->
                         <div class="col-4 text-center">
                             <br>
-    
-                            {% if view.is_following %}
+
+                            {% if view.is_following  %}
+                            {% if user_object == user %}
                             <a class="btn btn-outline-info btn-block"
                                 href="{% url 'users-profile-unfollow' user_object.id %}">unfollow</a>
                             {% else %}
@@ -67,9 +67,10 @@
                                 Follow
                             </a>
                             {% endif %}
+                            {% endif %}
                         </div>
                         <!--FOLLOW/UNFOLLOW BUTTON END-->
-    
+
                         <!--dropdown button-->
                         <div class="col-4 text-center">
                             <!-- <h3 class="mb-0">45  </h3> -->
@@ -98,7 +99,7 @@
             </div>
         </div>
     </div>
-        <!--profile head-->
+    <!--profile head-->
 
     <br>
     <!-- users post begin -->
