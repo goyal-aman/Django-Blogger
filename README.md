@@ -57,5 +57,3 @@ and You are done. Enjoy
 ##Problems
 
 If there is any problem with any steps above, or find a problem is the project create a issue
-
-## Contributing
