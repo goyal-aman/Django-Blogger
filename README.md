@@ -54,6 +54,7 @@ but you still cannot login to admin page for which you need to create the admin 
 
 and You are done. Enjoy
 
-##Problems
+
+## Problems
 
 If there is any problem with any steps above, or find a problem is the project create a issue
