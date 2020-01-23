@@ -84,41 +84,28 @@
                         <div class="col-sm-6 col-6 text-center">
                             <h6 class="mb-0">
                                 <br>
-                                <a class="btn btn-primary btn-sm" href="{% url 'user-following' user_object.username %}" style="color: white;">
+                                <a class="btn btn-primary btn-sm" href="{% url 'user-following' user_object.username %}"
+                                    style="color: white;">
                                     {{ user_object.profile.isfollowing.all.count }}
                                     <small>Following</small>
                                 </a>
                             </h6>
 
                         </div>
-                        <!--FOLLOWING FOLLOWERS NUMBER END-->
-
-
-                        <!--FOLLOW/UNFOLLOW BUTTON-->
-
                         <div class="col-sm-6 col-6 text-center">
                             <h6 class="mb-0">
                                 <br>
-                                <small>
-                                </small>
-
-                                <a class="btn btn-warning btn-sm" href="{% url 'user-follower' user_object.username %}" style="color: white;">
+                                <a class="btn btn-warning btn-sm" href="{% url 'user-follower' user_object.username %}"
+                                    style="color: white;">
                                     {{ user_object.profile.followedby.all.count }}
                                     <small>
                                         Followers
-                                    </small></a><small>
-                                </small>
+                                    </small></a>
                             </h6>
-
                         </div>
 
-                        <!--FOLLOW/UNFOLLOW BUTTON END-->
 
 
-                        <!--dropdown button-->
-
-
-                        <!--dropdown button ends-->
                         <!--/col-->
                     </div>
                     <!--endbottom card following-followers-->
