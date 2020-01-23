@@ -414,3 +414,8 @@ transform: scale(1.2)
 .container {
   padding: 2px 16px;
 }
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
