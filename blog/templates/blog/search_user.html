@@ -2,10 +2,8 @@
 {% block content %}
 
 <!-- <div class="text-center" style="display:flex; flex-wrap: wrap;"> -->
-<div style="display: grid; grid-auto-flow: dense;">
     {% for object in search_object %}
     {% include 'snippets/user_card.html' %}
     {% endfor %}
-</div>
     
 {% endblock content %}
