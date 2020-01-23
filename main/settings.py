@@ -26,6 +26,7 @@ SECRET_KEY = 's^c*4usc_u+8y)28zx#ch(vc(yq7&2kj29v$5(y&4&5szqeo+t'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+#to change
 
 
 # Application definition
