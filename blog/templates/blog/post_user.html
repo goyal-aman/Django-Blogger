@@ -16,18 +16,18 @@
                         </div>
 
                         <div class="col-12 col-lg-8 col-md-6">
-                            <h3 class="mb-0 text-truncated text-center">{{user_object.first_name|capfirst}}
+                            <h3 class="mb-0 text-truncated text-center username">{{user_object.first_name|capfirst}}
                                 {{user_object.last_name|capfirst}}
                             </h3>
                             <br><br>
-                            <p class=" border-left pl-3">
+                            <!-- <p class=" border-left pl-3"> -->
                                 <!-- I love to read, hang out with friends, watch football, listen to music, and learn new
                                 things. -->
-                            </p>
-                            <div class=" border-left pl-3">
+                            <!-- </p> -->
+                            <!-- <div class=" border-left pl-3"> -->
                                 <!-- <p class="badge badge-info tags">Web UI Designer</p> -->
-                            </div>
-                            <br>
+                            <!-- </div> -->
+                            <!-- <br> -->
                         </div>
 
 
@@ -35,7 +35,7 @@
                         {% if user.is_authenticated %}
                         {% if user_object != user %}
                         <div class="col-6 text-center">
-                            <br>
+                            <!-- <br> -->
 
                             {% if view.is_following  %}
 
@@ -57,7 +57,7 @@
                         <!--dropdown button-->
                         <div class="col-6 text-center float-right">
                             <!-- <h3 class="mb-0">45  </h3> -->
-                            <br>
+                            <!-- <br> -->
                             <button type="button" class="btn btn-outline-primary btn-block dropdown-toggle"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="fa fa-gear"></span> Options</button>
