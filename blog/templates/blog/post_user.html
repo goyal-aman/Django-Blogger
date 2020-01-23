@@ -8,7 +8,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row ">
                         <div class="col-12 col-lg-4 col-md-6 text-center">
                             <img src="{{ user_object.profile.image.url }}" alt=""
                                 class="mx-auto rounded-circle account-img img-bordered-primary">
@@ -30,34 +30,11 @@
                             <br>
                         </div>
 
-                        <!--FOLLOWING FOLLOWERS NUMBER-->
-                        <div class="col-sm-4 col-4 text-center">
-                            <h6 class="mb-0">
-                                <br>
-                                <a class="btn btn-primary btn-sm" href="{% url 'user-following' user_object.username %}"
-                                    style="color: white;">
-                                    {{ user_object.profile.isfollowing.all.count }}
-                                    <small>
-                                        Following
-                                </a>
-                                </small>
 
-                                <a class="btn btn-warning btn-sm" href="{% url 'user-follower' user_object.username %}"
-                                    style="color: white;">
-                                    {{ user_object.profile.followedby.all.count }}
-                                    <small>
-                                        Followers
-                                </a>
-                                </small>
-                            </h6>
-
-                        </div>
-                        <!--FOLLOWING FOLLOWERS NUMBER END-->
-
-                        {% if user.is_authenticated %}
                         <!--FOLLOW/UNFOLLOW BUTTON-->
+                        {% if user.is_authenticated %}
                         {% if user_object != user %}
-                        <div class="col-4 text-center">
+                        <div class="col-6 text-center">
                             <br>
 
                             {% if view.is_following  %}
@@ -72,13 +49,13 @@
                             {% endif %}
                         </div>
                         {% else %}
-                        <div class="col-4"></div>
+                        <div class="col-6"></div>
                         {% endif %}
                         <!--FOLLOW/UNFOLLOW BUTTON END-->
 
 
                         <!--dropdown button-->
-                        <div class="col-4 text-center">
+                        <div class="col-6 text-center float-right">
                             <!-- <h3 class="mb-0">45  </h3> -->
                             <br>
                             <button type="button" class="btn btn-outline-primary btn-block dropdown-toggle"
@@ -100,9 +77,57 @@
                         <!--/col-->
                     </div>
                     <!--/row-->
+
+                    <!--bottom card following-followers-->
+                    <div class="row">
+                        <!--FOLLOWING FOLLOWERS NUMBER-->
+                        <div class="col-sm-6 col-6 text-center">
+                            <h6 class="mb-0">
+                                <br>
+                                <a class="btn btn-primary btn-sm" href="{% url 'user-following' user_object.username %}" style="color: white;">
+                                    {{ user_object.profile.isfollowing.all.count }}
+                                    <small>Following</small>
+                                </a>
+                            </h6>
+
+                        </div>
+                        <!--FOLLOWING FOLLOWERS NUMBER END-->
+
+
+                        <!--FOLLOW/UNFOLLOW BUTTON-->
+
+                        <div class="col-sm-6 col-6 text-center">
+                            <h6 class="mb-0">
+                                <br>
+                                <small>
+                                </small>
+
+                                <a class="btn btn-warning btn-sm" href="{% url 'user-follower' user_object.username %}" style="color: white;">
+                                    {{ user_object.profile.followedby.all.count }}
+                                    <small>
+                                        Followers
+                                    </small></a><small>
+                                </small>
+                            </h6>
+
+                        </div>
+
+                        <!--FOLLOW/UNFOLLOW BUTTON END-->
+
+
+                        <!--dropdown button-->
+
+
+                        <!--dropdown button ends-->
+                        <!--/col-->
+                    </div>
+                    <!--endbottom card following-followers-->
+
                 </div>
                 <!--/card-block-->
+
             </div>
+
         </div>
     </div>
     <!--profile head-->
