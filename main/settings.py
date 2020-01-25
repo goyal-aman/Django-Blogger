@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get("SECREYKEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =  True if os.environ.get('DEBUGVALUE')=='TRUE' else False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://blogger-web.herokuapp.com', 'localhost']
 #to change
 
 
