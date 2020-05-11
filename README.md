@@ -44,6 +44,15 @@ To finally use this you need to makemigrations and migrate without which there w
 
 ```python manage.py migrate```
 
+```python manage.py collectstatic```
+
+before running development server test if everything is working properly 
+
+```python manage.py test```
+
+this will run all test, made to confirm is everything is working properly. If any of the test fails, try again from the beggining and if problem persists create an issue.
+
+
 and finally you are ready to run development server by using this  command
 
 ```python manage.py runserver```
