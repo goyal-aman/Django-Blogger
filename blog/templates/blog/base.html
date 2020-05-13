@@ -23,7 +23,7 @@
   <header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
       <div class="container">
-        <a class="navbar-brand mr-4" href="/">Blog</a>
+        <a class="navbar-brand mr-4" href="/">Blogger</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
           aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -40,13 +40,13 @@
               href="{% url 'blog-post-user' user.username %}"><b>{{ user.first_name|title }}</b></a>
             <a class="nav-item nav-link" href="{% url 'blog-post-create' %}">New Post</a>
             <a class="nav-item nav-link" href="{% url 'users-logout' %}"> Logout </a>
-<!--search bar-->
+            <!--search bar-->
             <form class="form-inline my-2 my-lg-0 ml-2" action="{% url 'blog-user-search' %}" method="POST">
               {% csrf_token %}
-              <input name="search"  class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
             </form>
-<!--seach bar end-->
+            <!--seach bar end-->
             {% else %}
             <a class="nav-item nav-link" href="{% url 'users-login' %}">Login</a>
             <a class="nav-item nav-link" href="{% url 'users-register' %}">Register</a>
