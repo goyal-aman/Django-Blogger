@@ -11,6 +11,8 @@ from django.contrib.auth.base_user import BaseUserManager
 #   Common Imports
 from django.utils.translation import gettext_lazy as _
 
+# custom imports
+from .CustomFields import LowercaseEmailField
 
 class UserManager(BaseUserManager):
     def create_user(self, email, username, first_name, last_name, password=None):
@@ -54,7 +56,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
 
     #   compulsory fields
-    email = models.EmailField(max_length=255, unique=True)
+    email = LowercaseEmailField(max_length=255, unique=True)
     username = models.CharField(
         unique=True,  max_length=255,  null=True, blank=False)
     first_name = models.CharField(
